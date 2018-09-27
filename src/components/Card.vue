@@ -64,11 +64,9 @@ p {
   font-size: 1.2rem;
   font-family: "Roboto", sans-serif;
 }
-
 .single-card-view {
   margin-top: 60px;
 }
-
 .cross-section {
   position: absolute;
   top: 50px;
@@ -80,7 +78,6 @@ p {
   z-index: -1;
   transform: rotate(-15deg);
 }
-
 .card-name {
   margin-top: 80px;
   font-size: 4rem;
@@ -89,11 +86,9 @@ p {
   margin-left: -25%;
   text-shadow: 5px 10px rgba(100, 39, 39, 0.2);
 }
-
 .reversed {
   transform: rotate(180deg);
 }
-
 .text-box {
   position: absolute;
   background-color: #69b578;
@@ -105,7 +100,6 @@ p {
   height: 60%;
   transform: rotate(-15deg);
 }
-
 .descriptions {
   margin-top: 50px;
 }

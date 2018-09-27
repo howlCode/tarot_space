@@ -3,6 +3,8 @@ import Router from "vue-router";
 import Main from "@/components/Main";
 import Card from "@/components/Card";
 
+import ThreeCardSpread from "@/components/spreads/ThreeCardSpread";
+
 Vue.use(Router);
 
 export default new Router({
@@ -16,6 +18,11 @@ export default new Router({
       path: "/card/:id",
       name: "Card",
       component: Card
+    },
+    {
+      path: "/spreads/three-card-spread",
+      name: "ThreeCardSpread",
+      component: ThreeCardSpread
     }
   ]
 });

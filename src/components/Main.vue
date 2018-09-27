@@ -8,7 +8,7 @@
         <h1 class="welcome">Welcome to Tarot Space</h1>
         <div class="row">
           <div class="col-md-12">
-              <button type="button" class="btn btn-lg main-btn">Three Card Spread</button>
+              <button @click="threeCardSpread" type="button" class="btn btn-lg main-btn">Three Card Spread</button>
           </div>
           <div class="col-md-12">
               <button type="button" class="btn btn-lg main-btn">Celtic Cross Spread</button>
@@ -50,6 +50,9 @@ export default {
           this.cards = response.data;
         })
         .catch(error => this.setError(error, "The Server Did Not Respond"));
+    },
+    threeCardSpread() {
+      this.$router.push("/spreads/three-card-spread");
     },
     setError(error, text) {
       this.error =
@@ -104,7 +107,6 @@ export default {
   z-index: -1;
   transform: rotate(-5deg);
 }
-
 .cross-section-2 {
   position: absolute;
   top: 540px;
@@ -114,15 +116,14 @@ export default {
   z-index: -1;
   transform: rotate(5deg);
 }
-
 .hover-cursor:hover {
   cursor: pointer;
 }
-
 .main-btn {
   width: 300px;
   margin: 20px;
   background-color: #95b9cf;
+  color: #fff;
   font-family: "IM Fell English SC", serif;
   box-shadow: 5px 8px rgba(0, 0, 0, 0.2);
   font-size: 2rem;
