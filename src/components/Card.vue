@@ -13,7 +13,8 @@
           <img class="img-responsive reversed" :src="card.face_image_url">
           <p><em>Reversed: </em>{{ card.reversed }}</p>
         </div>
-        <div class="col-md-12 text-justify">
+        <div class="col-md-12 text-box"></div>
+        <div class="col-md-12 descriptions">
           <p><em>Summary:</em> {{ card.summary }}</p>
           <p><em>Detailed Info:</em> {{ card.full_meaning }}</p>
         </div>
@@ -59,6 +60,7 @@ img {
 }
 p {
   font-size: 1.2rem;
+  font-family: "Roboto", sans-serif;
 }
 
 .single-card-view {
@@ -78,10 +80,28 @@ p {
 
 .card-name {
   margin-top: 80px;
-  font-size: 2.5rem;
+  font-size: 4rem;
+  font-family: "IM Fell English SC", serif;
+  margin-right: 50px;
+  margin-left: -40px;
 }
 
 .reversed {
   transform: rotate(180deg);
+}
+
+.text-box {
+  position: absolute;
+  background-color: #69b578;
+  border-radius: 2%;
+  margin-top: 30px;
+  opacity: 0.2;
+  top: 420px;
+  width: 80%;
+  height: 80%;
+}
+
+.descriptions {
+  margin-top: 60px;
 }
 </style>
