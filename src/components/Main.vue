@@ -1,17 +1,31 @@
 <template>
   <div class="container">
+    <transition appear enter-active-class="animated fadeIn">
     <div class="row card-container">
       <div class="col-md-12 cross-section-1"></div>
       <div class="col-md-12 cross-section-2"></div>
-      <div class="col-md-12 cross-section-3"></div>
       <div class="col-md-4 col-sm-12">
         <h1 class="welcome">Welcome to Tarot Space</h1>
+        <div class="row">
+          <div class="col-md-12">
+              <button type="button" class="btn btn-lg main-btn">Three Card Spread</button>
+          </div>
+          <div class="col-md-12">
+              <button type="button" class="btn btn-lg main-btn">Celtic Cross Spread</button>
+          </div>
+          <div class="col-md-12">
+              <button type="button" class="btn btn-lg main-btn">Explore The Cards</button>
+          </div>
+        </div>
       </div>
+      <transition appear enter-active-class="animated fadeIn">
       <div class="col-md-8 col-sm-12" v-for="card in cards" :key="card.id">
-        <img class="card-img" :src="card.face_image_url" @click="showCard(card)">
+        <img class="card-img hover-cursor" :src="card.face_image_url" @click="showCard(card)">
         <p class="keywords">{{ card.upright }}</p>
       </div>
+      </transition>
     </div>
+    </transition>
   </div>
 </template>
 
@@ -52,9 +66,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .container {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-align: center;
   margin-top: 60px;
 }
@@ -82,6 +93,7 @@ export default {
   text-transform: capitalize;
   color: #fff;
   text-shadow: 3px 5px rgba(100, 39, 39, 0.2);
+  font-family: "IM Fell English SC", serif;
 }
 .cross-section-1 {
   position: absolute;
@@ -103,13 +115,16 @@ export default {
   transform: rotate(5deg);
 }
 
-.cross-section-3 {
-  position: absolute;
-  top: 980px;
-  height: 340px;
-  width: 80%;
-  background-color: #69b578;
-  z-index: -1;
-  transform: rotate(-5deg);
+.hover-cursor:hover {
+  cursor: pointer;
+}
+
+.main-btn {
+  width: 300px;
+  margin: 20px;
+  background-color: #95b9cf;
+  font-family: "IM Fell English SC", serif;
+  box-shadow: 5px 8px rgba(0, 0, 0, 0.2);
+  font-size: 2rem;
 }
 </style>
