@@ -15,7 +15,7 @@ export default new Router({
       component: Main
     },
     {
-      path: "/card/:id",
+      path: "/cards/:id",
       name: "Card",
       component: Card
     },

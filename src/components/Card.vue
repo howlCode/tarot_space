@@ -1,28 +1,28 @@
 <template>
-    <div class="container single-card-view">
-      <h1 v-if="error" class="text-center">{{ error }}</h1>
-      <transition appear enter-active-class="animated fadeIn">
-      <div class="row">
-        <div class="col-md-12 cross-section"></div>
-        <div class="col-md-5 col-sm-12 text-center">
-          <img class="img-responsive" :src="card.face_image_url" alt="">
-          <p class="keywords"><em>Upright: </em>{{ card.upright }}</p>
-        </div>
-        <div class="col-md-2 col-sm-12 text-center">
-          <p class="card-name">{{ card.name }}</p>
-        </div>
-        <div class="col-md-5 col-sm-12 text-center">
-          <img class="img-responsive reversed" :src="card.face_image_url">
-          <p class="keywords"><em>Reversed: </em>{{ card.reversed }}</p>
-        </div>
-        <div class="col-md-12 text-box"></div>
-        <div class="col-md-12 descriptions">
-          <p><em>Summary:</em> {{ card.summary }}</p>
-          <p><em>Detailed Info:</em> {{ card.full_meaning }}</p>
-        </div>
+  <div class="container single-card-view">
+    <h1 v-if="error" class="text-center">{{ error }}</h1>
+    <transition appear enter-active-class="animated fadeIn">
+    <div class="row">
+      <div class="col-md-12 cross-section"></div>
+      <div class="col-md-5 col-sm-12 text-center">
+        <img class="img-responsive" :src="card.face_image_url" alt="">
+        <p class="keywords"><em>Upright: </em>{{ card.upright }}</p>
       </div>
-      </transition>
+      <div class="col-md-2 col-sm-12 text-center">
+        <p class="card-name">{{ card.name }}</p>
+      </div>
+      <div class="col-md-5 col-sm-12 text-center">
+        <img class="img-responsive reversed" :src="card.face_image_url">
+        <p class="keywords"><em>Reversed: </em>{{ card.reversed }}</p>
+      </div>
+      <div class="col-md-12 text-box"></div>
+      <div class="col-md-12 descriptions">
+        <p><em>Summary:</em> {{ card.summary }}</p>
+        <p><em>Detailed Info:</em> {{ card.full_meaning }}</p>
+      </div>
     </div>
+    </transition>
+  </div>
 </template>
 
 <script>

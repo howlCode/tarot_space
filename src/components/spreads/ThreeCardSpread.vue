@@ -15,21 +15,28 @@
         </transition>
       </div>
       <div v-if="shuffling" class="col-md-12"><p>Shuffling the deck...</p></div>
-        <div v-if="cards" class="col-md-4 col-sm-12 card-container" v-for="card in cards" :key="card.id">
-          <p class="position">{{ card.position }}</p>
-          <transition appear enter-active-class="animated rollIn" after-enter-class="animated fadeOut">
-            <img :class="imgAlign(card)" :src="card.face_image_url" :alt="card.name">
-          </transition>
-            <transition appear enter-active-class="animated fadeIn" after-enter-class="animated fadeOut">
+      <div v-if="cards" class="col-md-4 col-sm-12 card-container" v-for="card in cards" :key="card.id">
+        <p class="position">{{ card.position }}</p>
+        <transition appear enter-active-class="animated rollIn" after-enter-class="animated fadeOut">
+          <img id="show-modal" @click="setCardModal(card)" :class="imgAlign(card)" :src="card.face_image_url" :alt="card.name">
+        </transition>
+          <transition appear enter-active-class="animated fadeIn" after-enter-class="animated fadeOut">
           <p class="keywords">{{ keywords(card) }}</p>
-          </transition>
-        </div>
+        </transition>
+      </div>
+      <CardModal :card="cardInModal" v-if="showModal" @close="showModal = false">
+          <!--
+            you can use custom content here to overwrite
+            default content
+          -->
+      </CardModal>
     </div>
     </transition>
   </div>
 </template>
 
 <script>
+import CardModal from "@/components/CardModal";
 export default {
   name: "ThreeCardSpread",
   data() {
@@ -38,7 +45,9 @@ export default {
       error: "",
       showQueryContainer: true,
       shuffling: false,
-      showCards: false
+      showCards: false,
+      cardInModal: "",
+      showModal: false
     };
   },
   methods: {
@@ -82,7 +91,14 @@ export default {
       } else {
         return `${card.reversed}`;
       }
+    },
+    setCardModal(card) {
+      this.cardInModal = card;
+      this.showModal = true;
     }
+  },
+  components: {
+    CardModal
   }
 };
 </script>
@@ -116,14 +132,16 @@ export default {
   background-color: #6fa3c4;
 }
 .card-container {
-  margin-top: 80px;
+  margin-top: 40px;
 }
 .position {
-  background-color: #69b578;
+  width: 200px;
   text-align: center;
   margin: 0 auto;
-  margin-bottom: 10px;
-  width: 100px;
+  margin-bottom: 20px;
+  background-color: #95b9cf;
+  color: #fff;
+  font-size: 1.3rem;
 }
 .card-img {
   height: 500px;

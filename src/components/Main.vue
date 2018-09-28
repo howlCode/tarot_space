@@ -61,7 +61,7 @@ export default {
         text;
     },
     showCard(card) {
-      this.$router.push(`/card/${card.id}`);
+      this.$router.push(`/cards/${card.id}`);
     }
   }
 };
