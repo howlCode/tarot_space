@@ -6,6 +6,7 @@
       <div class="col-md-12 cross-section-2"></div>
       <div class="col-md-4 col-sm-12">
         <h1 class="welcome">Welcome to Tarot Space</h1>
+        <h1 v-if="error" class="text-center">{{ error }}</h1>
         <div class="row">
           <div class="col-md-12">
               <button @click="threeCardSpread" type="button" class="btn btn-lg main-btn">Three Card Spread</button>

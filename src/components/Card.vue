@@ -1,5 +1,6 @@
 <template>
     <div class="container single-card-view">
+      <h1 v-if="error" class="text-center">{{ error }}</h1>
       <transition appear enter-active-class="animated fadeIn">
       <div class="row">
         <div class="col-md-12 cross-section"></div>
@@ -53,7 +54,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 * {
   color: #fff;
 }
