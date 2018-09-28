@@ -129,4 +129,7 @@ export default {
   box-shadow: 5px 8px rgba(0, 0, 0, 0.2);
   font-size: 2rem;
 }
+.main-btn:hover {
+  background-color: #6fa3c4;
+}
 </style>
