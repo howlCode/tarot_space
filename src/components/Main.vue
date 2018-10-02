@@ -101,19 +101,19 @@ export default {
 }
 .cross-section-1 {
   position: absolute;
-  top: 100px;
-  height: 340px;
-  width: 80%;
-  background-color: #69b578;
+  top: 50px;
+  height: 300px;
+  width: 500px;
+  background-color: rgba(0, 0, 0, 0.2);
   z-index: -1;
   transform: rotate(-5deg);
 }
 .cross-section-2 {
   position: absolute;
-  top: 540px;
-  height: 340px;
-  width: 80%;
-  background-color: #69b578;
+  top: 400px;
+  height: 300px;
+  width: 500px;
+  background-color: rgba(0, 0, 0, 0.2);
   z-index: -1;
   transform: rotate(5deg);
 }

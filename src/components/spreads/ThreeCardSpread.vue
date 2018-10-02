@@ -25,10 +25,7 @@
         </transition>
       </div>
       <CardModal :card="cardInModal" v-if="showModal" @close="showModal = false">
-          <!--
-            you can use custom content here to overwrite
-            default content
-          -->
+
       </CardModal>
     </div>
     </transition>
@@ -168,7 +165,7 @@ export default {
   top: 140px;
   height: 340px;
   width: 80%;
-  background-color: #69b578;
+  background-color: rgba(0, 0, 0, 0.2);
   z-index: -1;
   transform: rotate(-5deg);
 }

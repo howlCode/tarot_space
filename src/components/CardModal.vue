@@ -1,20 +1,22 @@
 <template>
   <transition name="modal">
     <div class="modal-mask">
+    <img class="card-upright" :src="card.face_image_url" alt="">
       <div class="modal-wrapper">
         <div class="modal-container">
+          <div class="modal-header">
+            <h5 class="modal-title">{{ card.name }}</h5>
+            <button class="close" @click="$emit('close')"><span aria-hidden="true">&times;</span></button>
+          </div>
           <div class="container">
-            <button class="modal-default-button" @click="$emit('close')">X</button>
-            <div class="row">
-              <div class="col-md-12 descriptions">
-                <p><em>Summary:</em> {{ card.summary }}</p>
-                <p><em>Detailed Info:</em> {{ card.full_meaning }}</p>
-              </div>
+            <div class="modal-body">
+              <p><em>Summary:</em> {{ card.summary }}</p>
+              <p><em>Detailed Info:</em> {{ card.full_meaning }}</p>
             </div>
+          </div>
           </div>
         </div>
       </div>
-    </div>
   </transition>
 </template>
 
@@ -34,7 +36,7 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.9);
   display: table;
   transition: opacity 0.3s ease;
 }
@@ -43,17 +45,33 @@ export default {
   vertical-align: middle;
 }
 .modal-container {
-  width: 75%;
+  width: 55%;
+  max-height: calc(100vh - 200px);
   margin: 0 auto;
+  margin-right: 100px;
   padding: 20px 30px;
   background-color: rgba(0, 0, 0, 0.5);
   transition: all 0.3s ease;
+  border-radius: 2%;
+  overflow-y: overlay;
 }
-.modal-default-button {
-  float: right;
-  height: 50px;
-  width: 50px;
-  background-color: rgba(0, 0, 0, 0.3);
+.card-upright {
+  position: absolute;
+  top: 130px;
+  left: 150px;
+  width: 300px;
+  height: 500px;
+  opacity: 0.8;
+  transition: all 0.5s ease;
+}
+.card-upright:hover {
+  cursor: pointer;
+  transform: rotate(180deg);
+}
+.modal-title {
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
 }
 .modal-enter {
   opacity: 0;
@@ -76,5 +94,14 @@ img {
 p {
   font-size: 1.2rem;
   font-family: "Roboto", sans-serif;
+}
+::-webkit-scrollbar {
+  width: 12px;
+  background-color: #f5f5f5;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color: #95b9cf;
 }
 </style>
