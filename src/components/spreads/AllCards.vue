@@ -6,27 +6,21 @@
         <div class="col-md-12"><button @click="mainPage()" class="btn-back">Back</button></div>
         <div v-if="cards" class="col-lg-2 col-md-3 col-sm-6 col-xs-12" v-for="card in cards" :key="card.id">
           <transition appear enter-active-class="animated zoomIn" after-enter-class="animated fadeOut">
-            <img id="show-modal" @click="setCardModal(card)" class="card-img" :src="card.face_image_url" :alt="card.name">
+            <img @click="showCard(card)" class="card-img" :src="card.face_image_url" :alt="card.name">
           </transition>
         </div>
       </div>
-      <CardModal :card="cardInModal" v-if="showModal" @close="showModal = false">
-
-      </CardModal>
     </div>
 </template>
 
 <script>
-import CardModal from "@/components/CardModal";
 export default {
   name: "AllCards",
   data() {
     return {
       cards: [],
       error: "",
-      loading: true,
-      cardInModal: "",
-      showModal: false
+      loading: true
     };
   },
   created() {
@@ -44,16 +38,12 @@ export default {
         (error.response && error.response.data && error.response.data.error) ||
         text;
     },
-    setCardModal(card) {
-      this.cardInModal = card;
-      this.showModal = true;
-    },
     mainPage() {
       this.$router.push("/");
+    },
+    showCard(card) {
+      this.$router.push(`/cards/${card.id}`);
     }
-  },
-  components: {
-    CardModal
   }
 };
 </script>
