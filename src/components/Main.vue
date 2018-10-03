@@ -1,10 +1,9 @@
 <template>
   <div class="container">
+    <div v-if="loading" class="col-md8">Loading...</div>
     <transition appear enter-active-class="animated fadeIn">
     <div class="row card-container">
-      <div class="col-md-12 cross-section-1"></div>
-      <div class="col-md-12 cross-section-2"></div>
-      <div class="col-md-4 col-sm-12">
+      <div class="col-md-6 col-sm-12">
         <h1 class="welcome">Welcome to Tarot Space</h1>
         <h1 v-if="error" class="text-center">{{ error }}</h1>
         <div class="row">
@@ -12,17 +11,17 @@
               <button @click="threeCardSpread" type="button" class="btn btn-lg main-btn">Three Card Spread</button>
           </div>
           <div class="col-md-12">
-              <button type="button" class="btn btn-lg main-btn">Celtic Cross Spread</button>
+              <button @click="celticCrossSpread" type="button" class="btn btn-lg main-btn">Celtic Cross Spread</button>
           </div>
           <div class="col-md-12">
-              <button type="button" class="btn btn-lg main-btn">Explore The Cards</button>
+              <button @click="allCards" type="button" class="btn btn-lg main-btn">Explore The Cards</button>
           </div>
         </div>
       </div>
       <transition appear enter-active-class="animated fadeIn">
-      <div class="col-md-8 col-sm-12" v-for="card in cards" :key="card.id">
-        <img class="card-img hover-cursor" :src="card.face_image_url" @click="showCard(card)">
-        <p class="keywords">{{ card.upright }}</p>
+      <div class="col-md-6 col-sm-12">
+        <img class="card-img hover-cursor" :src="currentCard.face_image_url" @click="showCard(currentCard)">
+        <p class="keywords">{{ currentCard.upright }}</p>
       </div>
       </transition>
     </div>
@@ -36,24 +35,39 @@ export default {
   data() {
     return {
       cards: [],
+      currentCard: [],
+      loading: true,
       error: ""
     };
   },
   created() {
-    this.getRandomCard();
+    this.getCards();
     setInterval(this.getRandomCard, 3000);
   },
   methods: {
-    getRandomCard() {
+    getCards() {
       this.$http.plain
-        .get("/spreads/random_card")
+        .get("/cards")
         .then(response => {
           this.cards = response.data;
+          this.getRandomCard();
+          this.loading = false;
         })
         .catch(error => this.setError(error, "The Server Did Not Respond"));
     },
+    getRandomCard() {
+      this.currentCard = this.cards[
+        Math.floor(Math.random() * this.cards.length)
+      ];
+    },
     threeCardSpread() {
       this.$router.push("/spreads/three-card-spread");
+    },
+    celticCrossSpread() {
+      this.$router.push("/spreads/celtic-cross-spread");
+    },
+    allCards() {
+      this.$router.push("/spreads/all-cards");
     },
     setError(error, text) {
       this.error =
@@ -98,24 +112,6 @@ export default {
   color: #fff;
   text-shadow: 3px 5px rgba(100, 39, 39, 0.2);
   font-family: "IM Fell English SC", serif;
-}
-.cross-section-1 {
-  position: absolute;
-  top: 50px;
-  height: 300px;
-  width: 500px;
-  background-color: rgba(0, 0, 0, 0.2);
-  z-index: -1;
-  transform: rotate(-5deg);
-}
-.cross-section-2 {
-  position: absolute;
-  top: 400px;
-  height: 300px;
-  width: 500px;
-  background-color: rgba(0, 0, 0, 0.2);
-  z-index: -1;
-  transform: rotate(5deg);
 }
 .hover-cursor:hover {
   cursor: pointer;

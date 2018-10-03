@@ -2,11 +2,12 @@
   <transition name="modal">
     <div class="modal-mask">
     <img class="card-upright" :src="card.face_image_url" alt="">
-      <div class="modal-wrapper">
+      <div class="modal-wrapper">    
         <div class="modal-container">
-          <div class="modal-header">
+          <div>
             <h5 class="modal-title">{{ card.name }}</h5>
             <button class="close" @click="$emit('close')"><span aria-hidden="true">&times;</span></button>
+            <h5 class="modal-title"><span style="color: #95b9cf;">{{ card.position }}</span></h5>
           </div>
           <div class="container">
             <div class="modal-body">
@@ -48,7 +49,7 @@ export default {
   width: 55%;
   max-height: calc(100vh - 200px);
   margin: 0 auto;
-  margin-right: 100px;
+  margin-right: 200px;
   padding: 20px 30px;
   background-color: rgba(0, 0, 0, 0.5);
   transition: all 0.3s ease;
@@ -65,13 +66,15 @@ export default {
   transition: all 0.5s ease;
 }
 .card-upright:hover {
-  cursor: pointer;
   transform: rotate(180deg);
 }
 .modal-title {
   margin: 0 auto;
   width: 100%;
   text-align: center;
+}
+#position {
+  font-family: "IM Fell English", serif;
 }
 .modal-enter {
   opacity: 0;
@@ -101,7 +104,7 @@ p {
 }
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
   background-color: #95b9cf;
 }
 </style>

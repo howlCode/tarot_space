@@ -2,28 +2,34 @@
   <div class="container">
     <h1 v-if="error" class="text-center">{{ error }}</h1>
     <transition appear enter-active-class="animated fadeIn">
-    <div class="row">
+    <div class="row card-container">
       <div class="col-md-12 cross-section-1"></div>
       <div v-if="showQueryContainer" class="col-md-12">
         <transition appear enter-active-class="animated fadeIn" after-enter-class="animated fadeOut">
           <h1 class="query text-center">Consider Your Query for A Moment</h1>
         </transition>
       </div>
-      <div v-if="showQueryContainer" class="ready-button-container">
+      <div v-if="showQueryContainer" class="col-md-12 ready-button-container">
         <transition appear enter-active-class="animated fadeIn" after-enter-class="animated fadeOut">
           <button @click="revealCards" class="btn btn-large btn-ready">Click Here When You Are Ready</button>
         </transition>
       </div>
+      
       <div v-if="shuffling" class="col-md-12"><p>Shuffling the deck...</p></div>
-      <div v-if="cards" class="col-md-4 col-sm-12 card-container" v-for="card in cards" :key="card.id">
-        <p class="position">{{ card.position }}</p>
-        <transition appear enter-active-class="animated rollIn" after-enter-class="animated fadeOut">
-          <img id="show-modal" @click="setCardModal(card)" :class="imgAlign(card)" :src="card.face_image_url" :alt="card.name">
-        </transition>
+        <div v-if="cards" class="col-md-4 col-sm-12" v-for="card in cards" :key="card.id">
+          <div class="col-md-12">
+            <p class="position">{{ card.position }}</p>
+          </div>
+          <transition appear enter-active-class="animated rollIn" after-enter-class="animated fadeOut">
+            <img id="show-modal" @click="setCardModal(card)" :class="imgAlign(card)" :src="card.face_image_url" :alt="card.name">
+          </transition>
           <transition appear enter-active-class="animated fadeIn" after-enter-class="animated fadeOut">
-          <p class="keywords">{{ keywords(card) }}</p>
-        </transition>
+            <div class="col-md-12">
+              <p class="keywords">{{ keywords(card) }}</p>
+            </div>
+          </transition>
       </div>
+
       <CardModal :card="cardInModal" v-if="showModal" @close="showModal = false">
 
       </CardModal>
@@ -109,21 +115,17 @@ export default {
   margin-top: 190px;
 }
 .ready-button-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   margin: 0 auto;
   width: 100%;
   text-align: center;
 }
 .btn-ready {
-  width: 500px;
-  margin: 10px;
+  width: 365px;
   margin-top: 50px;
   background-color: #95b9cf;
   color: #fff;
   box-shadow: 5px 8px rgba(0, 0, 0, 0.2);
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 .btn-ready:hover {
   background-color: #6fa3c4;
@@ -132,11 +134,10 @@ export default {
   margin-top: 40px;
 }
 .position {
-  width: 200px;
-  text-align: center;
+  width: 100%;
+  text-align: left;
   margin: 0 auto;
   margin-bottom: 20px;
-  background-color: #95b9cf;
   color: #fff;
   font-size: 1.3rem;
 }
@@ -146,12 +147,18 @@ export default {
   margin: 0 10px;
   box-shadow: 5px 10px rgba(0, 0, 0, 0.2);
 }
+.card-img:hover {
+  cursor: pointer;
+}
 .card-img-reverse {
   height: 500px;
   width: 300px;
   margin: 0 10px;
   box-shadow: 5px 10px rgba(0, 0, 0, 0.2);
   transform: rotate(180deg);
+}
+.card-img-reverse:hover {
+  cursor: pointer;
 }
 .keywords {
   margin-top: 10px;
