@@ -17,7 +17,7 @@
       
       <div v-if="shuffling" class="col-md-12"><p>Shuffling the deck...</p></div>
       <div v-if="!showQueryContainer" class="col-md-12"><button @click="mainPage()" class="btn-back">Back</button></div>
-        <div v-if="cards" class="col-md-4 col-sm-12" v-for="card in cards" :key="card.id">
+        <div v-if="cards" class="col-lg-4 col-md-6 col-sm-12" v-for="card in cards" :key="card.id">
           <div class="col-md-12">
             <p class="position">{{ card.position }}</p>
           </div>
@@ -183,11 +183,22 @@ export default {
 .btn-back {
   background-color: #95b9cf;
   color: #fff;
-  margin-left: -100px;
   box-shadow: 5px 8px rgba(0, 0, 0, 0.2);
 }
 .btn-back:hover {
   cursor: pointer;
   background-color: #6fa3c4;
+}
+.col-sm-12 {
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+}
+@media (max-width: 768px) {
+  .btn-back {
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+  }
 }
 </style>
