@@ -4,7 +4,7 @@
       <h1 v-if="error" class="text-center">{{ error }}</h1>
         <div v-if="loading" class="col-md-12"><p>Loading the deck...</p></div>
         <div class="col-md-12"><button @click="mainPage()" class="btn-back">Back</button></div>
-        <div v-if="cards" class="col-md-2 col-sm-4" v-for="card in cards" :key="card.id">
+        <div v-if="cards" class="col-lg-2 col-md-3 col-sm-6 col-xs-12" v-for="card in cards" :key="card.id">
           <transition appear enter-active-class="animated zoomIn" after-enter-class="animated fadeOut">
             <img id="show-modal" @click="setCardModal(card)" class="card-img" :src="card.face_image_url" :alt="card.name">
           </transition>
@@ -81,11 +81,25 @@ export default {
 .btn-back {
   background-color: #95b9cf;
   color: #fff;
-  margin-left: -100px;
   box-shadow: 5px 8px rgba(0, 0, 0, 0.2);
 }
 .btn-back:hover {
   cursor: pointer;
   background-color: #6fa3c4;
+}
+.col-md-3 {
+  margin: 10px;
+}
+@media (max-width: 768px) {
+  .card-container {
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+  }
+  .btn-back {
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+  }
 }
 </style>
