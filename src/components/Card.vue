@@ -74,7 +74,7 @@ p {
   height: 60%;
   border-radius: 2%;
   width: 80%;
-  background-color: #69b578;
+  background-color: rgba(0, 0, 0, 0.8);
   opacity: 0.2;
   z-index: -1;
   transform: rotate(-15deg);
@@ -92,7 +92,7 @@ p {
 }
 .text-box {
   position: absolute;
-  background-color: #69b578;
+  background-color: rgba(0, 0, 0, 0.8);
   border-radius: 2%;
   margin-top: 30px;
   opacity: 0.2;
@@ -111,5 +111,19 @@ p {
   color: #fff;
   text-shadow: 3px 5px rgba(100, 39, 39, 0.2);
   font-family: "IM Fell English SC", serif;
+}
+@media (max-width: 768px) {
+  .cross-section {
+    display: none;
+  }
+  .text-box {
+    display: none;
+  }
+  .reversed {
+    display: none;
+  }
+  .card-name {
+    display: none;
+  }
 }
 </style>

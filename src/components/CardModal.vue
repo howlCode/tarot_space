@@ -107,4 +107,19 @@ p {
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
   background-color: #95b9cf;
 }
+
+@media (max-width: 1320px) {
+  .card-upright {
+    left: 30px;
+  }
+}
+@media (max-width: 1060px) {
+  .card-upright {
+    display: none;
+  }
+  .modal-container {
+    width: 100%;
+    margin: 0;
+  }
+}
 </style>
