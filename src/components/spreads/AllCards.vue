@@ -3,6 +3,7 @@
     <div class="row card-container">
       <h1 v-if="error" class="text-center">{{ error }}</h1>
         <div v-if="loading" class="col-md-12"><p>Loading the deck...</p></div>
+        <div class="col-md-12"><button @click="mainPage()" class="btn-back">Back</button></div>
         <div v-if="cards" class="col-md-2 col-sm-4" v-for="card in cards" :key="card.id">
           <transition appear enter-active-class="animated zoomIn" after-enter-class="animated fadeOut">
             <img id="show-modal" @click="setCardModal(card)" class="card-img" :src="card.face_image_url" :alt="card.name">
@@ -46,6 +47,9 @@ export default {
     setCardModal(card) {
       this.cardInModal = card;
       this.showModal = true;
+    },
+    mainPage() {
+      this.$router.push("/");
     }
   },
   components: {
@@ -73,5 +77,15 @@ export default {
   cursor: pointer;
   opacity: 0.8;
   transform: scale(1.05, 1.05);
+}
+.btn-back {
+  background-color: #95b9cf;
+  color: #fff;
+  margin-left: -100px;
+  box-shadow: 5px 8px rgba(0, 0, 0, 0.2);
+}
+.btn-back:hover {
+  cursor: pointer;
+  background-color: #6fa3c4;
 }
 </style>

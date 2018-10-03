@@ -15,18 +15,19 @@
         </transition>
       </div>
       <div v-if="shuffling" class="col-md-12"><p>Shuffling the deck...</p></div>
+      <div v-if="!showQueryContainer" class="col-md-12"><button @click="mainPage()" class="btn-back">Back</button></div>
       <div v-if="cards" class="col-md-2 col-sm-12" v-for="card in cards" :key="card.id">
         <transition appear enter-active-class="animated zoomIn" after-enter-class="animated fadeOut">
-          <p v-if="card.position === 'Represents You'" class="card-position-one"><img id="show-modal" @click="setCardModal(card)" :class="imgAlign(card)" :src="card.face_image_url" :alt="card.name"><span class="position-1">{{ card.position }}</span></p>
-          <p v-if="card.position === 'Your Obstacle'" class="card-position-two"><img id="show-modal" @click="setCardModal(card)" :class="imgAlign(card)" :src="card.face_image_url" :alt="card.name"><span class="position-2">{{ card.position }}</span></p>
-          <p v-if="card.position === 'Influences'" class="card-position-three"><img id="show-modal" @click="setCardModal(card)" :class="imgAlign(card)" :src="card.face_image_url" :alt="card.name"><span class="position-3">{{ card.position }}</span></p>
-          <p v-if="card.position === 'The Root of The Query'" class="card-position-four"><img id="show-modal" @click="setCardModal(card)" :class="imgAlign(card)" :src="card.face_image_url" :alt="card.name"><span class="position-4">{{ card.position }}</span></p>
-          <p v-if="card.position === 'The Past'" class="card-position-five"><img id="show-modal" @click="setCardModal(card)" :class="imgAlign(card)" :src="card.face_image_url" :alt="card.name"><span class="position-5">{{ card.position }}</span></p>
-          <p v-if="card.position === 'Near Future'" class="card-position-six"><img id="show-modal" @click="setCardModal(card)" :class="imgAlign(card)" :src="card.face_image_url" :alt="card.name"><span class="position-6">{{ card.position }}</span></p>
-          <p v-if="card.position === 'Best Approach to Query'" class="card-position-seven"><img id="show-modal" @click="setCardModal(card)" :class="imgAlign(card)" :src="card.face_image_url" :alt="card.name"><span class="position-7">{{ card.position }}</span></p>
-          <p v-if="card.position === 'The Environment Around the Query'" class="card-position-eight"><img id="show-modal" @click="setCardModal(card)" :class="imgAlign(card)" :src="card.face_image_url" :alt="card.name"><span class="position-8">{{ card.position }}</span></p>
-          <p v-if="card.position === 'Your Hopes and Fears'" class="card-position-nine"><img id="show-modal" @click="setCardModal(card)" :class="imgAlign(card)" :src="card.face_image_url" :alt="card.name"><span class="position-9">{{ card.position }}</span></p>
-          <p v-if="card.position === 'Ultimate Potential Outcome'" class="card-position-ten"><img id="show-modal" @click="setCardModal(card)" :class="imgAlign(card)" :src="card.face_image_url" :alt="card.name"><span class="position-10">{{ card.position }}</span></p>
+          <p v-if="card.position === 'Represents You'" class="card-position-one"><img id="show-modal" @click="setCardModal(card)" :class="imgAlign(card)" :src="card.face_image_url" :alt="card.name"></p>
+          <p v-if="card.position === 'Your Obstacle'" class="card-position-two"><img id="show-modal" @click="setCardModal(card)" :class="imgAlign(card)" :src="card.face_image_url" :alt="card.name"></p>
+          <p v-if="card.position === 'Influences'" class="card-position-three"><img id="show-modal" @click="setCardModal(card)" :class="imgAlign(card)" :src="card.face_image_url" :alt="card.name"></p>
+          <p v-if="card.position === 'The Root of The Query'" class="card-position-four"><img id="show-modal" @click="setCardModal(card)" :class="imgAlign(card)" :src="card.face_image_url" :alt="card.name"></p>
+          <p v-if="card.position === 'The Past'" class="card-position-five"><img id="show-modal" @click="setCardModal(card)" :class="imgAlign(card)" :src="card.face_image_url" :alt="card.name"></p>
+          <p v-if="card.position === 'Near Future'" class="card-position-six"><img id="show-modal" @click="setCardModal(card)" :class="imgAlign(card)" :src="card.face_image_url" :alt="card.name"></p>
+          <p v-if="card.position === 'Best Approach to Query'" class="card-position-seven"><img id="show-modal" @click="setCardModal(card)" :class="imgAlign(card)" :src="card.face_image_url" :alt="card.name"></p>
+          <p v-if="card.position === 'The Environment Around the Query'" class="card-position-eight"><img id="show-modal" @click="setCardModal(card)" :class="imgAlign(card)" :src="card.face_image_url" :alt="card.name"></p>
+          <p v-if="card.position === 'Your Hopes and Fears'" class="card-position-nine"><img id="show-modal" @click="setCardModal(card)" :class="imgAlign(card)" :src="card.face_image_url" :alt="card.name"></p>
+          <p v-if="card.position === 'Ultimate Potential Outcome'" class="card-position-ten"><img id="show-modal" @click="setCardModal(card)" :class="imgAlign(card)" :src="card.face_image_url" :alt="card.name"></p>
         </transition>
       </div>
       <CardModal :card="cardInModal" v-if="showModal" @close="showModal = false">
@@ -115,6 +116,9 @@ export default {
     setCardModal(card) {
       this.cardInModal = card;
       this.showModal = true;
+    },
+    mainPage() {
+      this.$router.push("/");
     }
   },
   components: {
@@ -147,8 +151,17 @@ export default {
 .btn-ready:hover {
   background-color: #6fa3c4;
 }
+.btn-back {
+  background-color: #95b9cf;
+  color: #fff;
+  box-shadow: 5px 8px rgba(0, 0, 0, 0.2);
+}
+.btn-back:hover {
+  cursor: pointer;
+  background-color: #6fa3c4;
+}
 .card-container {
-  margin-top: 40px;
+  margin-top: 20px;
 }
 .card-img {
   height: 220px;
@@ -237,64 +250,5 @@ export default {
   position: absolute;
   top: -30px;
   right: -380px;
-}
-.position-1 {
-  position: absolute;
-  right: 30px;
-  background-color: rgba(0, 0, 0, 0.6);
-}
-.position-2 {
-  position: absolute;
-  right: 30px;
-  left: -10px;
-  top: 20px;
-  background-color: rgba(0, 0, 0, 0.6);
-  transform: rotate(-90deg);
-}
-.position-3 {
-  position: absolute;
-  right: 50px;
-  top: 10px;
-  background-color: rgba(0, 0, 0, 0.6);
-}
-.position-4 {
-  position: absolute;
-  right: 30px;
-  left: 20px;
-  background-color: rgba(0, 0, 0, 0.6);
-}
-.position-5 {
-  position: absolute;
-  right: 50px;
-  background-color: rgba(0, 0, 0, 0.6);
-}
-.position-6 {
-  position: absolute;
-  right: 40px;
-  background-color: rgba(0, 0, 0, 0.6);
-}
-.position-7 {
-  position: absolute;
-  left: 15px;
-  right: 15px;
-  background-color: rgba(0, 0, 0, 0.6);
-}
-.position-8 {
-  position: absolute;
-  left: 15px;
-  right: 15px;
-  background-color: rgba(0, 0, 0, 0.6);
-}
-.position-9 {
-  position: absolute;
-  left: 15px;
-  right: 15px;
-  background-color: rgba(0, 0, 0, 0.6);
-}
-.position-10 {
-  position: absolute;
-  left: 15px;
-  right: 15px;
-  background-color: rgba(0, 0, 0, 0.6);
 }
 </style>

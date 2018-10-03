@@ -16,6 +16,7 @@
       </div>
       
       <div v-if="shuffling" class="col-md-12"><p>Shuffling the deck...</p></div>
+      <div v-if="!showQueryContainer" class="col-md-12"><button @click="mainPage()" class="btn-back">Back</button></div>
         <div v-if="cards" class="col-md-4 col-sm-12" v-for="card in cards" :key="card.id">
           <div class="col-md-12">
             <p class="position">{{ card.position }}</p>
@@ -98,6 +99,9 @@ export default {
     setCardModal(card) {
       this.cardInModal = card;
       this.showModal = true;
+    },
+    mainPage() {
+      this.$router.push("/");
     }
   },
   components: {
@@ -131,7 +135,7 @@ export default {
   background-color: #6fa3c4;
 }
 .card-container {
-  margin-top: 40px;
+  margin-top: 20px;
 }
 .position {
   width: 100%;
@@ -175,5 +179,15 @@ export default {
   background-color: rgba(0, 0, 0, 0.2);
   z-index: -1;
   transform: rotate(-5deg);
+}
+.btn-back {
+  background-color: #95b9cf;
+  color: #fff;
+  margin-left: -100px;
+  box-shadow: 5px 8px rgba(0, 0, 0, 0.2);
+}
+.btn-back:hover {
+  cursor: pointer;
+  background-color: #6fa3c4;
 }
 </style>
