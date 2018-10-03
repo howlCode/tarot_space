@@ -16,7 +16,7 @@
       </div>
       <div v-if="shuffling" class="col-md-12"><p>Shuffling the deck...</p></div>
       <div v-if="!showQueryContainer" class="col-md-12"><button @click="mainPage()" class="btn-back">Back</button></div>
-      <div v-if="cards" class="col-md-2 col-sm-12" v-for="card in cards" :key="card.id">
+      <div v-if="cards" class="col-md-2 col-sm-6 col-xs-12" v-for="card in cards" :key="card.id">
         <transition appear enter-active-class="animated zoomIn" after-enter-class="animated fadeOut">
           <p v-if="card.position === 'Represents You'" class="card-position-one"><img id="show-modal" @click="setCardModal(card)" :class="imgAlign(card)" :src="card.face_image_url" :alt="card.name"></p>
           <p v-if="card.position === 'Your Obstacle'" class="card-position-two"><img id="show-modal" @click="setCardModal(card)" :class="imgAlign(card)" :src="card.face_image_url" :alt="card.name"></p>
@@ -250,5 +250,49 @@ export default {
   position: absolute;
   top: -30px;
   right: -380px;
+}
+@media (max-width: 1199px) {
+  .card-container {
+    margin-top: 20px;
+    margin-left: -10px;
+  }
+  .card-position-one,
+  .card-position-two,
+  .card-position-three,
+  .card-position-four,
+  .card-position-five,
+  .card-position-six,
+  .card-position-seven,
+  .card-position-eight,
+  .card-position-nine,
+  .card-position-ten {
+    position: static;
+  }
+  .card-position-two {
+    transform: rotate(0deg);
+  }
+  .col-md-2 {
+    margin: 20px;
+  }
+}
+@media (max-width: 767px) {
+  .card-img,
+  .card-img-reverse {
+    height: 500px;
+    width: 300px;
+    margin: 0 auto;
+  }
+  .col-md-2,
+  .col-sm-6,
+  .col-xs-12 {
+    margin: 10px;
+    text-align: center;
+    width: 100%;
+  }
+  .btn-back {
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+  }
 }
 </style>
